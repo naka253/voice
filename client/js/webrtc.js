@@ -54,16 +54,23 @@ async function createPeerConnection(userId) {
 
 let isMuted = false;
 
-document.getElementById("muteBtn")
-.onclick = () => {
+const muteBtn =
+document.getElementById("muteBtn");
 
-  isMuted = !isMuted;
+if (muteBtn) {
 
-  localStream.getAudioTracks()[0].enabled = !isMuted;
+  muteBtn.onclick = () => {
 
-  document.getElementById("muteBtn")
-  .innerText = isMuted ? "Unmute" : "Mute";
-};
+    isMuted = !isMuted;
+
+    localStream
+      .getAudioTracks()[0]
+      .enabled = !isMuted;
+
+    muteBtn.innerText =
+      isMuted ? "Unmute" : "Mute";
+  };
+}
 
 function detectSpeaking(stream, element) {
 
