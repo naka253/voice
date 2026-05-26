@@ -1,23 +1,94 @@
-const socket = io("https://voice-production-bee7.up.railway.app");
+const socket = io("https://voice-production-bee7.up.railway.app", {
+  reconnection: true,
+  reconnectionAttempts: Infinity,
+  reconnectionDelay: 1000
+});
 
 const username = localStorage.getItem("username");
 
 socket.emit("join-room", username);
 
-const usersDiv = document.getElementById("users");
+startVoice();
 
-socket.on("update-users", (users) => {
+socket.on("all-users", async (users) => {
 
-  usersDiv.innerHTML = "";
+  for (const userId of users) {
 
-  users.forEach(user => {
+    const peer = await createPeerConnection(userId);
 
-    const div = document.createElement("div");
+    const offer = await peer.createOffer();
 
-    div.className = "user-card";
+    await peer.setLocalDescription(offer);
 
-    div.innerHTML = `🟢 ${user.username}`;
+    socket.emit("offer", {
+      target: userId,
+      offer
+    });
+  }
+});
 
-    usersDiv.appendChild(div);
+socket.on("offer", async ({ sender, offer }) => {
+
+  const peer = await createPeerConnection(sender);
+
+  await peer.setRemoteDescription(
+    new RTCSessionDescription(offer)
+  );
+
+  const answer = await peer.createAnswer();
+
+  await peer.setLocalDescription(answer);
+
+  socket.emit("answer", {
+    target: sender,
+    answer
   });
+});
+
+socket.on("answer", async ({ sender, answer }) => {
+
+  const peer = peerConnections[sender];
+
+  await peer.setRemoteDescription(
+    new RTCSessionDescription(answer)
+  );
+});
+
+socket.on("ice-candidate", async ({ sender, candidate }) => {
+
+  const peer = peerConnections[sender];
+
+  if (peer) {
+    await peer.addIceCandidate(
+      new RTCIceCandidate(candidate)
+    );
+  }
+});
+
+function joinRoom(roomName) {
+
+  socket.emit("join-voice-room", roomName);
+}
+
+socket.on("room-update", (rooms) => {
+
+  console.log(rooms);
+});
+
+const status =
+document.getElementById("connectionStatus");
+
+socket.on("connect", () => {
+
+  status.innerText = "Connected";
+});
+
+socket.on("disconnect", () => {
+
+  status.innerText = "Disconnected";
+});
+
+socket.on("reconnect", () => {
+
+  status.innerText = "Reconnected";
 });

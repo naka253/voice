@@ -9,27 +9,67 @@
 </head>
 <body>
 
+<div class="mobile-tabs">
+
+  <button onclick="showTab('rooms')">
+    Rooms
+  </button>
+
+  <button onclick="showTab('users')">
+    Users
+  </button>
+
+  <button onclick="showTab('settings')">
+    Settings
+  </button>
+
+</div>
+
 <div class="room-layout">
 
-  <div class="sidebar">
+  <div class="sidebar tab-content" id="roomsTab">
+
     <h2>Rooms</h2>
 
-    <div class="room">🎮 Lobby (0/5)</div>
-    <div class="room">🏆 Ranked (0/5)</div>
-    <div class="room">😴 AFK (0/5)</div>
+    <div class="room" onclick="joinRoom('Lobby')">
+      🎮 Lobby
+    </div>
+
+    <div class="room" onclick="joinRoom('Ranked')">
+      🏆 Ranked
+    </div>
+
+    <div class="room" onclick="joinRoom('AFK')">
+      😴 AFK
+    </div>
+
   </div>
 
-  <div class="main">
+  <div class="main tab-content" id="usersTab">
+
     <h2>Users</h2>
 
     <div id="users"></div>
 
-    <button id="muteBtn">Mute</button>
+  </div>
+
+  <div class="settings tab-content" id="settingsTab">
+
+    <h2>Settings</h2>
+
+    <button id="muteBtn">
+      Mute
+    </button>
+
   </div>
 
 </div>
 
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<script src="js/webrtc.js"></script>
 <script src="js/socket.js"></script>
+<script src="js/ui.js"></script>
+
 </body>
 </html>

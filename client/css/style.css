@@ -56,3 +56,126 @@ button {
 button:hover {
   box-shadow: 0 0 20px cyan;
 }
+.user-speaking {
+  box-shadow: 0 0 20px cyan;
+  border: 1px solid cyan;
+}
+
+.room-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+
+  background: rgba(255,255,255,0.05);
+
+  padding: 20px;
+}
+
+.main {
+  flex: 1;
+
+  padding: 20px;
+}
+
+.settings {
+  display: none;
+}
+
+.room {
+  padding: 12px;
+
+  margin-top: 10px;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.05);
+
+  cursor: pointer;
+}
+
+.room:hover {
+  box-shadow: 0 0 15px cyan;
+}
+
+.user-card {
+  padding: 12px;
+
+  margin-top: 10px;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.05);
+}
+
+.mobile-tabs {
+
+  display: none;
+
+  position: fixed;
+
+  bottom: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  background: rgba(0,0,0,0.8);
+
+  backdrop-filter: blur(10px);
+
+  padding: 10px;
+
+  justify-content: space-around;
+
+  z-index: 1000;
+}
+
+.mobile-tabs button {
+
+  flex: 1;
+
+  margin: 0 5px;
+
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+
+  .room-layout {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .main,
+  .settings {
+
+    width: 100%;
+
+    height: calc(100vh - 80px);
+
+    overflow-y: auto;
+
+    display: none;
+  }
+
+  .mobile-tabs {
+    display: flex;
+  }
+
+  #roomsTab {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+
+  .sidebar,
+  .main,
+  .settings {
+
+    display: block !important;
+  }
+}
