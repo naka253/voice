@@ -1,4 +1,4 @@
-const socket = io("YOUR_RAILWAY_URL");
+const socket = io("https://voice-production-bee7.up.railway.app");
 
 const username = localStorage.getItem("username");
 
