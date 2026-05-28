@@ -1,8 +1,5 @@
 const socket = io(
-  "voice-production-072b.up.railway.app",
-  {
-    reconnection: true
-  }
+  "https://voice.fly.dev"
 );
 
 const username =
