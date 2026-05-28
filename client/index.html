@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>VC Site</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
 <body>
 
 <div class="login-container">
+
   <h1>VoltVC</h1>
 
-  <input type="text" id="username" placeholder="名前を入力">
+  <input
+    type="text"
+    id="username"
+    placeholder="名前を入力"
+  >
 
-  <button id="joinBtn">サーバー参加</button>
+  <button id="joinBtn">
+    参加
+  </button>
+
 </div>
 
 <script>
-  document.getElementById("joinBtn").onclick = () => {
-    const username = document.getElementById("username").value;
 
-    if (!username) {
-      alert("名前を入力してください");
-      return;
-    }
+document
+.getElementById("joinBtn")
+.onclick = () => {
 
-    localStorage.setItem("username", username);
+  const username =
+    document
+    .getElementById("username")
+    .value;
 
-    window.location.href = "room.html";
-  };
+  if (!username) {
+
+    alert("名前を入力してください");
+
+    return;
+  }
+
+  localStorage.setItem(
+    "username",
+    username
+  );
+
+  window.location.href =
+    "room.html";
+};
+
 </script>
 
 </body>

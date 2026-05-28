@@ -1,68 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Voice Room</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
 <body>
 
-<div class="mobile-tabs">
+<div id="connectionStatus">
 
-  <button onclick="showTab('rooms')">
-    Rooms
-  </button>
-
-  <button onclick="showTab('users')">
-    Users
-  </button>
-
-  <button onclick="showTab('settings')">
-    Settings
-  </button>
+  Connecting...
 
 </div>
 
 <div class="room-layout">
 
-  <div class="sidebar tab-content" id="roomsTab">
+  <div class="main">
 
-    <h2>Rooms</h2>
-
-    <div class="room" onclick="joinRoom('Lobby')">
-      🎮 Lobby
-    </div>
-
-    <div class="room" onclick="joinRoom('Ranked')">
-      🏆 Ranked
-    </div>
-
-    <div class="room" onclick="joinRoom('AFK')">
-      😴 AFK
-    </div>
-
-  </div>
-
-  <div class="main tab-content" id="usersTab">
-
-    <h2>Users</h2>
+    <h2>Voice Chat</h2>
 
     <div id="users"></div>
 
-  </div>
-
-  <div class="settings tab-content" id="settingsTab">
-
-    <h2>Settings</h2>
-
     <button id="muteBtn">
+
       Mute
+
     </button>
-    <div id="connectionStatus">
-     Connecting...
-    </div>
 
   </div>
 
@@ -70,9 +45,9 @@
 
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 
-<script src="js/webrtc.js"></script>
 <script src="js/socket.js"></script>
-<script src="js/ui.js"></script>
+
+<script src="js/webrtc.js"></script>
 
 </body>
 </html>
