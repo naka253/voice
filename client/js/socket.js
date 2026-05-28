@@ -1,5 +1,5 @@
 const socket = io(
-  "YOUR_RAILWAY_URL",
+  "voice-production-072b.up.railway.app",
   {
     reconnection: true
   }
